@@ -12,6 +12,7 @@ namespace BlazorWardrobe.Domain.Enums
             Hat,
             Outerwear,
             Accessorie,
+            Other
 
     }
 }

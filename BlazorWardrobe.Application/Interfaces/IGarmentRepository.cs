@@ -1,6 +1,8 @@
-﻿namespace BlazorWardrobe.Application.Interfaces
+﻿using BlazorWardrobe.Domain.Entities;
+
+namespace BlazorWardrobe.Application.Interfaces;
+
+public interface IGarmentRepository
 {
-    public class IGarmentRepository
-    {
-    }
+    Task AddAsync(Garment garment);
 }

@@ -9,6 +9,7 @@ namespace BlazorWardrobe.Domain.Enums
         LowerBody,
         FullBody,
         Feet,
-        Accessory
+        Accessory,
+        Other
     }
 }

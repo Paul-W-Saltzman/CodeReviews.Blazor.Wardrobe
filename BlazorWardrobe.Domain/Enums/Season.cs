@@ -6,6 +6,7 @@ namespace BlazorWardrobe.Domain.Enums
         Spring,
         Summer,
         Autumn,
-        Winter
+        Winter,
+        NoSeason
     }
 }
