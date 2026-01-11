@@ -13,9 +13,10 @@ namespace BlazorWardrobe.Infrastructure.Repositories
             context = factory.CreateDbContext();
         }
 
-        public Task AddAsync(Garment garment)
+        public async Task AddAsync(Garment garment)
         {
-            throw new NotImplementedException();
+            context.Garments.Add(garment);
+            await context.SaveChangesAsync();
         }
     }
 }

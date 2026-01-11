@@ -1,5 +1,7 @@
+using BlazorWardrobe.Application.Interfaces;
 using BlazorWardrobe.Components;
 using BlazorWardrobe.Infrastructure.Context;
+using BlazorWardrobe.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,8 @@ builder.Services.AddDbContextFactory<WardrobeDbContext>(options =>
         );
 
 } );
+
+builder.Services.AddScoped<IGarmentRepository, GarmentRepository>();
 
 var app = builder.Build();
 

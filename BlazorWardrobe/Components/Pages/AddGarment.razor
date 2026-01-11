@@ -1,0 +1,73 @@
+﻿@page "/add-garment"
+@inject IGarmentRepository Repository
+@inject NavigationManager Navigation
+
+<PageTitle>
+    Add New Garment
+</PageTitle>
+
+<div class="row justify-content-center">
+    <div class="col-6">
+        <EditForm method="post" FormName="AddGarmentForm" OnValidSubmit="AddNewGarment" Model="Garment" autocomplete="off">
+            <h3>
+                Add New Garment
+            </h3>
+            <div class="mb-3">
+                <label for="garment-type" class="form-label">
+                    Garment Type
+                </label>
+                <InputSelect id="garment-type" @bind-Value="Garment.GarmentType" class="form-control shadow-none">
+                    <option value="0">
+                        Select Category 
+                    </option>
+                    @foreach(var type in Enum.GetValues(typeof(GarmentType)))
+                    {
+                        <option value="@type">
+                            @type.ToString()
+                        </option>
+                    }
+                </InputSelect>
+            </div>
+            
+            <div class="mb-3">
+                <label for="brand" class="form-label">
+                Brand
+                </label>
+                <InputText id="brand" @bind-Value="Garment.Brand" class="form-control shadow=none"/>
+
+            </div>
+            <div class="mb-3">
+                <label for="last-worn-date" class="form-label">
+                    Last Worn
+                </label>
+                <InputDate id="last-worn-date" @bind-Value="Garment.LastWornDate" class="form-control shadow=none"/>
+            </div>
+            <div class="mb-3">
+                <button btn btn-primary shadow-none>
+                    Submit
+                </button>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+            </div>
+
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    [SupplyParameterFromForm]
+    public Garment Garment { get; set; } = new();
+
+    private async Task AddNewGarment()
+    {
+        await Repository.AddAsync(Garment);
+        Navigation.NavigateTo("/");
+        // Logic to add the garment to the wardrobe
+        // This could involve calling a service or updating a database
+        //Console.WriteLine($"Garment Added: {Garment.GarmentType}, {Garment.Brand}, Last Worn: {Garment.LastWornDate}");
+        
+        // Reset the form after submission
+        //Garment = new Garment();
+    }   
+     
+}
